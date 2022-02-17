@@ -12,6 +12,7 @@ function calculate() {
     balanceAmount.innerText = incomeAmount.value - totalExpenses;
 }
 
+
 //Savings Calculation
 function save() {
     let savePerchant = document.getElementById('save-perchant');
@@ -24,8 +25,27 @@ function save() {
     savingAmount.innerText = savingAmountResult;
     //Remaining Balance Calculation
 
-    var remainingBalanceResult = Number(balanceAmount.innerText) - Number(savingAmount.innerText);
+    let remainingBalanceResult = Number(balanceAmount.innerText) - Number(savingAmount.innerText);
     remainingBalance.innerText = remainingBalanceResult;
-
-
+}
+// Error Message Show from html
+document.getElementById('number-error').style.display = 'none';
+function errorMessage() {
+    let incomeAmount = document.getElementById('income-amount').value;
+    let foodExpences = document.getElementById('food-expenses').value;
+    let rentExpences = document.getElementById('rent-expenses').value;
+    let clothesExpences = document.getElementById('clothes-expenses').value;
+    if ((incomeAmount < 0 || foodExpences < 0 || rentExpences < 0 || clothesExpences < 0) || isNaN(incomeAmount) || isNaN(foodExpences) || isNaN(rentExpences) || isNaN(clothesExpences)) {
+        document.getElementById('number-error').style.display = 'block';
+    } else {
+        document.getElementById('number-error').style.display = 'none';
+    }
+}
+// Error Message From js
+function saveErrorMessage() {
+    let balanceAmount = document.getElementById('balance-amount').innerText;
+    let remainingBalance = document.getElementById('remaining-balance').innerText;
+    if (balanceAmount < remainingBalance) {
+        return alert('You have No Money Left !!!!!');
+    }
 }
